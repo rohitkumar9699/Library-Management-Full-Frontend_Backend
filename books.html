@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System - Books</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Library Management System</h1>
+    <h2>Book Information</h2>
+
+    <table border="1">
+        <tr>
+            <th>Book ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Availability</th>
+            <th>Author</th>
+            <th>Publisher</th>
+        </tr>
+        {% for book in books %}
+            <tr>
+                <td>{{ book[0] }}</td>
+                <td>{{ book[1] }}</td>
+                <td>{{ book[2] }}</td>
+                <td>{{ "Available" if book[3] else "Not Available" }}</td>
+                <td>{{ book[4] }}</td>
+                <td>{{ book[5] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Add New Book</h2>
+    <form action="/add_book" method="POST">
+        <!-- ... (previous form elements) ... -->
+        <label for="b_id">Book ID:</label>
+        <input type="text" name="b_id" required>
+        <!-- ... (remaining form elements) ... -->
+        <label for="b_name">Book Name:</label>
+        <input type="text" name="b_name" required>
+        <label for="b_price">Price:</label>
+        <input type="text" name="b_price" required>
+        <label for="available">Availability:</label>
+        <select name="available" required>
+            <option value="1">Available</option>
+            <option value="0">Not Available</option>
+        </select>
+        <label for="author">Author:</label>
+        <input type="text" name="author" required>
+        <label for="publisher">Publisher:</label>
+        <input type="text" name="publisher" required>
+        <button type="submit">Add Book</button>
+    </form>
+    <a href="/index.html">GO BACK</a>
+    <h1></h1>
+</body>
+</html>
